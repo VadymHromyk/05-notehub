@@ -8,6 +8,8 @@ import SearchBox from "../SearchBox/SearchBox";
 import { useDebouncedCallback } from "use-debounce";
 import Modal from "../Modal/Modal";
 import NoteForm from "../NoteForm/NoteForm";
+import Loader from "../Loader/Loader";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -43,8 +45,8 @@ export default function App() {
           Create note +
         </button>
       </header>
-      {isLoading && <p>Loading...</p>}
-      {isError && <p>Error: {error?.message}</p>}
+      {isLoading && <Loader />}
+      {isError && <ErrorMessage message={error.message} />}
       {data && data.notes.length > 0 && <NoteList notes={data.notes} />}
 
       {isModalOpen && (
