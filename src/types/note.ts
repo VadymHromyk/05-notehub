@@ -6,5 +6,3 @@ export interface Note {
   updatedAt: string;
   tag: string;
 }
-
-export interface NoteTag {}

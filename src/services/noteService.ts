@@ -11,7 +11,7 @@ interface FetchNoteResponse {
   note: Note;
 }
 
-type CreateNote = Pick<Note, "title" | "content" | "tag">;
+export type CreateNote = Pick<Note, "title" | "content" | "tag">;
 
 const urlNote = "https://notehub-public.goit.study/api/notes";
 

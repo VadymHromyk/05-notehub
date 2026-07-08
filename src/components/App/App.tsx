@@ -21,6 +21,7 @@ export default function App() {
   const closeModal = () => setIsModalOpen(false);
 
   const updateSearchQuery = useDebouncedCallback((value: string) => {
+    setCurrentPage(1);
     setQuery(value);
   }, 500);
 
