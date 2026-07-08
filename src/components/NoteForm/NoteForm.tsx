@@ -37,10 +37,8 @@ export default function NoteForm({ onClose }: NoteFormProps) {
 
   const mutation = useMutation({
     mutationFn: async (values: CreateNote) => {
-      createNote(values);
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["notes"] });
+      const res = createNote(values);
+      return res;
     },
   });
 
@@ -48,9 +46,13 @@ export default function NoteForm({ onClose }: NoteFormProps) {
     values: FormValues,
     actions: FormikHelpers<FormValues>,
   ) => {
-    mutation.mutate(values);
-    actions.resetForm();
-    onClose();
+    mutation.mutate(values, {
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ["notes"] });
+        actions.resetForm();
+        onClose();
+      },
+    });
   };
 
   return (
